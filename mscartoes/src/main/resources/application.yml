@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: mscartoes
+  rabbitmq:
+    host: ${RABBITMQ_SERVER}
+    port: 5672
+    username: guest
+    password: guest
+
+  output:
+    ansi:
+      enabled: ALWAYS
+
+server:
+  port: 0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://ms-eureka-user:ecok-usr-euuuaramssur@${EUREKA_SERVER}:8761/eureka
+
+  instance:
+    hostname: localhost
+    prefer-ip-address: false
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+mq:
+  queue:
+    emissao-cartoes: emissao-cartoes
+
+logging:
+  level:
+    org.hibernate.orm.connections.pooling: WARN
+  pattern:
+    console: '%clr(%d{dd-MM-yyyy HH:mm:ss}){blue} %clr(%5p) %clr([%t]){faint} %clr(%-40.40logger){cyan} %clr(:){yellow} %m%n'

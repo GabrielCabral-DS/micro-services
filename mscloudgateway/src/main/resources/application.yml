@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: mscloudgateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://${KEYCLOAK_SERVER}:${KEYCLOAK_PORT}/realms/msrealm
+
+  output:
+    ansi:
+      enabled: ALWAYS
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://ms-eureka-user:ecok-usr-euuuaramssur@${EUREKA_SERVER}:8761/eureka
+
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+
+logging:
+  level:
+    org.hibernate.orm.connections.pooling: WARN
+  pattern:
+    console: '%clr(%d{dd-MM-yyyy HH:mm:ss}){blue} %clr(%5p) %clr([%t]){faint} %clr(%-40.40logger){cyan} %clr(:){yellow} %m%n'

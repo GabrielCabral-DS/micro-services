@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: eureka-server
+
+  security:
+    basic:
+      enabled: true
+    user:
+      name: ms-eureka-user
+      password: ecok-usr-euuuaramssur
+
+  output:
+    ansi:
+      enabled: ALWAYS
+
+server:
+  port: 8761
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+logging:
+  level:
+    org.hibernate.orm.connections.pooling: WARN
+  pattern:
+    console: '%clr(%d{dd-MM-yyyy HH:mm:ss}){blue} %clr(%5p) %clr([%t]){faint} %clr(%-40.40logger){cyan} %clr(:){yellow} %m%n'
